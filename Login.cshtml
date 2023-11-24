@@ -1,0 +1,113 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div class="text-center">
+</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Disaster Alleviation Foundation</title>
+    <style>
+        /* Define the primary purple and secondary orange colors */
+        :root {
+            --primary-color: #800080; /* Purple */
+            --secondary-color: #cc5500; /* Orange */
+        }
+
+      
+        body {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+      
+        .donation-box {
+            text-align: center;
+            background-color: #f0f0f0; 
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+        }
+
+       
+        .button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .Login-button {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required> 
+                <br />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br />
+                <label for="remember">Remember Me:</label>
+                <input type="checkbox" id="remember" name="remember">
+                <br />
+                <br />
+                <a class="button btn-link Login-button" asp-area="" asp-page="/Menu">Login</a><br /><br />
+            </form>
+            <p>
+                Not registered yet? <a class="link text-dark" asp-area="" asp-page="/Register">Register</a>
+            </p>
+        </div>
+        <script>
+            let authorized = false;
+
+            function authorizeUser() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Authorized user
+                if (username === 'admin' && password === 'password') {
+                    authorized = true;
+                    document.getElementById('authorization').style.display = 'none';
+                    document.getElementById('donationForm').style.display = 'block';
+                } else {
+                    alert('Authorization failed. Please try again.');
+                }
+            }
+
+        </script>
+    </div>
+</body>
+

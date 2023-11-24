@@ -1,0 +1,91 @@
+﻿@page
+@model DisasterAlleviationFoundation.Pages.MenuModel
+@{
+}
+
+<html>
+<head>
+<style>
+
+    /* Define the primary purple and secondary orange colors */
+    :root {
+        --primary-color: #800080; /* Purple */
+        --secondary-color: #cc5500; /* Orange */
+    }
+
+
+    body {
+        background-color: var(--primary-color);
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+    .Donate-box {
+        text-align: center;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+        background-color: var(--secondary-color);
+        padding: 10px;
+        text-align: center;
+    }
+
+    h1 {
+        color: var(--secondary-color);
+    }
+
+
+    .button {
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+
+    .Donate-button {
+        background-color: var(--secondary-color);
+    }
+</style>
+
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <nav>
+        
+                <a class="button btn-link Donate-button" asp-area="" asp-page="/DonateGoods">Donate Goods
+                <br /></a>
+            
+                <br/><br />
+                <a class="button btn-link Disaster-button" asp-area="" asp-page="/Disaster">Disasters</a>
+            
+            
+                <br/><br />
+                <a class="button btn-link Disaster-button" asp-area="" asp-page="/DonateMoney">Money Donation</a>
+                 <br/><br />
+                 <a class="button btn-link Disaster-button" asp-area="" asp-page="/MoneyAllocation">Allocate money</a>
+                    <br /><br />
+        <a class="button btn-link Disaster-button" asp-area="" asp-page="/GoodsAllocation">Allocate Goods</a>
+            
+    </nav>
+</body>
+</html>

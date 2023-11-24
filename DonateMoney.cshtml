@@ -1,0 +1,143 @@
+﻿@page
+@model DonateMoneyModel
+@{
+
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Donation - Disaster Alleviation Foundation</title>
+    
+    <style>
+
+        /* Define the primary purple and secondary orange colors */
+        :root {
+            --primary-color: #800080; /* Purple */
+            --secondary-color: #cc5500; /* Orange */
+        }
+
+       
+        body {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        .Donate-box {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+        }
+
+        
+        .button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+       
+        .Donate-button {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <h1>Money Donation</h1>
+        <p>@DateTime.Now</p>
+
+        <label for="donation-amount">Amount (ZAR):</label>
+        <input type="number" id="donation-amount" name="donation-amount" required>
+        <br /><br />
+
+        <label for="anonymous">Remain Anonymous:</label>
+        <input type="checkbox" id="anonymous" name="anonymous"><br><br>
+
+
+                <button onclick="makeDonation()">Make Donation</button>
+
+                <div id="total-display">
+                    <strong>Total Donations:</strong> <span id="total-amount">0.00</span> ZAR
+              
+
+
+       
+        <br /><input type="submit" value="Donate" id="Donate">
+        <p class=" output" id="output1" rows="4"></p><br /><br />
+        <a class="button btn-link Donate-button" asp-area="" asp-page="/DonateGoods">Donate Goods</a><br /><br />
+        <a class="button btn-link Disaster-button" asp-area="" asp-page="/Disaster">Disasters</a><br /><br />
+
+        }
+        
+        <script>
+
+            const date = document.getElementById('donation-date');
+            const amount = document.getElementById('donation-amount');
+            const anonymous = document.getElementById('anonymous');
+            const button = document.getElementById('Donate');
+            const output = document.getElementById('output1');
+
+            function Display(){
+
+                output.innerHTML = Date();
+                output.innerHTML = amount.value;
+                output.innerHTML = anonymous.value;
+
+            }
+
+            button.addEventListener('click', Display);
+        
+            // Initialize total amount
+                let totalAmount = 0;
+
+                // Function to make a donation
+                function makeDonation() {
+                    const donationAmount = parseFloat(document.getElementById('donation-amount').value) || 0;
+                    const isAnonymous = document.getElementById('anonymous').checked;
+
+                    // Add the donation amount to the total
+                    totalAmount += donationAmount;
+
+                    // Display the total amount
+                    document.getElementById('total-amount').innerText = totalAmount.toFixed(2);
+
+                    // Optionally, you can reset the form or provide a confirmation to the user
+                    alert('Thank you for your donation!');
+                }
+        </script>
+    </div>
+    </div>
+</body>
+

@@ -1,0 +1,102 @@
+﻿@page
+@model DisasterAlleviationFoundation.Pages.GoodsAllocationModel
+@{
+}
+
+
+<head>
+    <title>Allocate Goods to Active Disaster</title>
+    <style>
+        /* Define the primary purple and secondary orange colors */
+        :root {
+            --primary-color: #800080; /* Purple */
+            --secondary-color: #cc5500; /* Orange */
+        }
+
+
+        body {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+        }
+
+
+        .button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+
+        .donate-button {
+            background-color: var(--secondary-color);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Allocate Goods to Active Disaster</h1>
+    <form action="/allocate" method="post">
+        <label for="disaster">Select Disaster:</label>
+        <select name="disaster" id="disaster">
+            <option value="1">Tornado</option>
+            <option value="2">Sandstorm</option>
+            <option value="3">Landslide </option>
+            <option value="4">Tsunami</option>
+            <option value="5">Volcano</option>
+        </select>
+        <br>
+        <label for="goods">Goods to Allocate:</label>
+        <input type="text" name="goods" id="goods">
+        <br>
+        <br /><br />
+        <a class="button btn-link Disaster-button" asp-area="" asp-page="/GoodsAllocation">Allocate</a>
+        <br /><br />
+        <a class="button btn-link Disaster-button" asp-area="" asp-page="/Menu">Back</a>
+        <div id="donation-result">
+            <script>
+                document.getElementById("donationForm").onsubmit = function (event) {
+                    event.preventDefault();
+
+                    // Gather form data
+
+                    var disasterId = document.getElementById("disaster").value;
+                    var donatedGoods = document.getElementById("goods").value;
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/DonateGoods", true);
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xhr.onload = function () {
+                        if (xhr.status == 200) {
+                            // Display donation result
+                            document.getElementById("donationResult").innerHTML = xhr.responseText;
+                        } else {
+                            // Handle error
+                            console.error("Error: " + xhr.status);
+                        }
+                    };
+                    var data = JSON.stringify({ disasterId: disasterId, donatedGoods: donatedGoods });
+                    xhr.send(data);
+                };
+            </script>
+        </div>
+    </form>
+</body>
+
+

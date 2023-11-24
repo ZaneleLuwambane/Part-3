@@ -1,0 +1,132 @@
+﻿@page
+@model DisasterModel
+@{
+    ViewData["Title"] = "Disasters";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Disaster Form</title>
+    <style>
+
+        /* Define the primary purple and secondary orange colors */
+        :root {
+            --primary-color: #800080; /* Purple */
+            --secondary-color: #cc5500; /* Orange */
+        }
+
+        
+        body {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        .Goods-box {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+        }
+
+        
+        .button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+       
+        .Disaster-button {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>New Disaster Form</h1>
+
+    <form id="disasterForm">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+        
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+        <br />
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+
+        <label for="Disaster Name">Disaster Name:</label>
+        <input type="text" id="DisasterName" name="Disaster Name"  required>
+        <br /><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <br>
+
+        <label for="aidTypes">Required Aid Types:</label>
+        <select id="aidTypes" name="aidTypes" multiple required>
+            <option value="Food">Food</option>
+            <option value="Water">Water</option>
+            <option value="Medical Supplies">Medical Supplies</option>
+            <option value="Shelter">Shelter</option>
+            <option value="Clothing">Clothing</option>
+            <!-- Add more aid types as needed -->
+        </select><br>
+        <a class="button btn-link disaster-button" asp-area="" asp-page="/index">Submit</a><br /><br />
+       
+    </form>
+    <script>
+        const disasters = [];
+
+        function collectData() {
+            const name = document.getElementById('DisasterName').value;
+            const Startdate = document.getElementById('startDate').value;
+            const enddate = document.getElementById('endDate').value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+            const AidType = document.getElementById('aidTypes').value;
+
+            const disaster = {
+                name,
+                Startdate,
+                enddate,
+                location,
+                description,
+                aidTypes
+            };
+
+            disasters.push(disaster);
+            document.getElementById('disasterForm').reset();
+        }
+    </script>
+</body>
+
